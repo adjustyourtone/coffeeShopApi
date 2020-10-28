@@ -16,7 +16,7 @@ CORS(app)
 !! NOTE THIS WILL DROP ALL RECORDS AND START YOUR DB FROM SCRATCH
 !! NOTE THIS MUST BE UNCOMMENTED ON FIRST RUN
 '''
-# db_drop_and_create_all()
+db_drop_and_create_all()
 
 # ROUTES
 
@@ -34,6 +34,16 @@ def index():
     returns status code 200 and json {"success": True, "drinks": drinks} where drinks is the list of drinks
         or appropriate status code indicating reason for failure
 '''
+
+
+@app.route('/drinks')
+def get_drinks():
+    drinks = Drink.query.all()
+
+    return jsonify({
+        'success': True,
+        'drinks': [drink.short() for drink in drinks]
+    }), 200
 
 
 '''
@@ -55,6 +65,27 @@ def index():
     returns status code 200 and json {"success": True, "drinks": drink} where drink an array containing only the newly created drink
         or appropriate status code indicating reason for failure
 '''
+
+
+@app.route('/drinks', methods=['POST'])
+@requires_auth('post:drinks')
+def create_drink(payload):
+    req = request.get_json()
+
+    try:
+        req_recipe = req['recipe']
+        if isinstance(req_recipe, dict):
+            req_recipe = [req_recipe]
+
+        drink = Drink()
+        drink.title = req['title']
+        drink.recipe = json.dumps(req_recipe)  # convert object to a string
+        drink.insert()
+
+    except BaseException:
+        abort(400)
+
+    return jsonify({'success': True, 'drinks': [drink.long()]})
 
 
 '''

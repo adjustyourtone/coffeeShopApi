@@ -1,0 +1,3 @@
+10/28 - took 3 days to get Angular app working. The project dependencies did not support a running ionic environment. Angular/cli needed to be updated to 7.3 and @angular-devkit/build-angular to 0.13
+  - front end is not running....
+
