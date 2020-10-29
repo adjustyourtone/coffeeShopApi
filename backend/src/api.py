@@ -3,16 +3,15 @@ from flask import Flask, request, jsonify, abort
 from sqlalchemy import exc
 import json
 from flask_cors import CORS
-
 from .database.models import db_drop_and_create_all, setup_db, Drink
-from .auth.auth import AuthError, requires_auth
+from .auth.auth import AuthError, get_token_auth_header, requires_auth
 
 app = Flask(__name__)
 setup_db(app)
 CORS(app)
 
 '''
-@TODO uncomment the following line to initialize the datbase
+@TODO uncomment the following line to initialize the database
 !! NOTE THIS WILL DROP ALL RECORDS AND START YOUR DB FROM SCRATCH
 !! NOTE THIS MUST BE UNCOMMENTED ON FIRST RUN
 '''
@@ -23,7 +22,16 @@ db_drop_and_create_all()
 
 @app.route('/')
 def index():
+
     return 'Hello World'
+
+
+@app.route('/headers')
+@requires_auth
+def headers(token):
+    # token = get_token_auth_header()
+    print(token)
+    return "the headers page"
 
 
 '''
@@ -56,15 +64,15 @@ def get_drinks():
 '''
 
 
-@app.route('/drinks-detail', methods=['GET'])
-@requires_auth('get:drinks-detail')
-def get_drink_detail(payload):
-    drinks = Drink.query.all()
+# @app.route('/drinks-detail', methods=['GET'])
+# @requires_auth('get:drinks-detail')
+# def get_drink_detail(payload):
+#     drinks = Drink.query.all()
 
-    return jsonify({
-        'success': True,
-        'drinks': [drink.long() for drink in drinks]
-    }), 200
+#     return jsonify({
+#         'success': True,
+#         'drinks': [drink.long() for drink in drinks]
+#     }), 200
 
 
 '''
@@ -78,25 +86,25 @@ def get_drink_detail(payload):
 '''
 
 
-@app.route('/drinks', methods=['POST'])
-@requires_auth('post:drinks')
-def create_drink(payload):
-    req = request.get_json()
+# @app.route('/drinks', methods=['POST'])
+# @requires_auth('post:drinks')
+# def create_drink(payload):
+#     req = request.get_json()
 
-    try:
-        req_recipe = req['recipe']
-        if isinstance(req_recipe, dict):
-            req_recipe = [req_recipe]
+#     try:
+#         req_recipe = req['recipe']
+#         if isinstance(req_recipe, dict):
+#             req_recipe = [req_recipe]
 
-        drink = Drink()
-        drink.title = req['title']
-        drink.recipe = json.dumps(req_recipe)  # convert object to a string
-        drink.insert()
+#         drink = Drink()
+#         drink.title = req['title']
+#         drink.recipe = json.dumps(req_recipe)  # convert object to a string
+#         drink.insert()
 
-    except BaseException:
-        abort(400)
+#     except BaseException:
+#         abort(400)
 
-    return jsonify({'success': True, 'drinks': [drink.long()]})
+#     return jsonify({'success': True, 'drinks': [drink.long()]})
 
 
 '''

@@ -2,4 +2,5 @@
   - front end is not running....
 
 - set up Auth0 account and set up Roles/Permissions. 
--Defined get_token_auth_header()
+-Defined get_token_auth_header(``)
+-was able to finally log in (.us missing in URL)
