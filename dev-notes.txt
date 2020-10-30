@@ -1,6 +1,10 @@
 10/28 - took 3 days to get Angular app working. The project dependencies did not support a running ionic environment. Angular/cli needed to be updated to 7.3 and @angular-devkit/build-angular to 0.13
   - front end is not running....
 
+10/29
 - set up Auth0 account and set up Roles/Permissions. 
 -Defined get_token_auth_header(``)
 -was able to finally log in (.us missing in URL)
+
+Where to start: 
+Need to make requests to endpoints with permissions. Set up permissions for Baristas first.
