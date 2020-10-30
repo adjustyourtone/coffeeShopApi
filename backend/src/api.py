@@ -26,22 +26,14 @@ def index():
     return jsonify({"message": 'Hello World'})
 
 
-@app.route('/headers')
-@requires_auth
-def headers(token):
-    # token = get_token_auth_header()
-    print(token)
-    return "the headers page"
-
-
-'''
-@TODO implement endpoint
-    GET /drinks
-        it should be a public endpoint
-        it should contain only the drink.short() data representation
-    returns status code 200 and json {"success": True, "drinks": drinks} where drinks is the list of drinks
-        or appropriate status code indicating reason for failure
-'''
+# '''
+# @TODO implement endpoint
+#     GET /drinks
+#         it should be a public endpoint
+#         it should contain only the drink.short() data representation
+#     returns status code 200 and json {"success": True, "drinks": drinks} where drinks is the list of drinks
+#         or appropriate status code indicating reason for failure
+# ''' - DONE
 
 
 @app.route('/drinks')
@@ -54,14 +46,14 @@ def get_drinks():
     }), 200
 
 
-'''
-@TODO implement endpoint
-    GET /drinks-detail
-        it should require the 'get:drinks-detail' permission
-        it should contain the drink.long() data representation
-    returns status code 200 and json {"success": True, "drinks": drinks} where drinks is the list of drinks
-        or appropriate status code indicating reason for failure
-'''
+# '''
+# @TODO implement endpoint
+#     GET /drinks-detail
+#         it should require the 'get:drinks-detail' permission
+#         it should contain the drink.long() data representation
+#     returns status code 200 and json {"success": True, "drinks": drinks} where drinks is the list of drinks
+#         or appropriate status code indicating reason for failure
+# ''' - DONE
 
 
 @app.route('/drinks-detail', methods=['GET'])
@@ -75,15 +67,15 @@ def get_drink_detail(payload):
     }), 200
 
 
-'''
-@TODO implement endpoint
-    POST /drinks
-        it should create a new row in the drinks table
-        it should require the 'post:drinks' permission
-        it should contain the drink.long() data representation
-    returns status code 200 and json {"success": True, "drinks": drink} where drink an array containing only the newly created drink
-        or appropriate status code indicating reason for failure
-'''
+# '''
+# @TODO implement endpoint
+#     POST /drinks
+#         it should create a new row in the drinks table
+#         it should require the 'post:drinks' permission
+#         it should contain the drink.long() data representation
+#     returns status code 200 and json {"success": True, "drinks": drink} where drink an array containing only the newly created drink
+#         or appropriate status code indicating reason for failure
+# ''' - DONE
 
 
 @app.route('/drinks', methods=['POST'])
@@ -168,3 +160,11 @@ def unprocessable(error):
 @TODO implement error handler for AuthError
     error handler should conform to general task above
 '''
+
+
+@app.errorhandler(AuthError)
+def process_AuthError(error):
+    response = jsonify(error.error)
+    response.status_code = error.status_code
+
+    return response
