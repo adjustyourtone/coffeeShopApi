@@ -158,7 +158,8 @@ def delete_drink(payload, id):
     return jsonify({'success': True, 'delete': drink.id}), 200
 
 
-# Error Handling 400, 401, 404, 422, 500
+# Error Handling
+# used  --> 400, 401, 404, 422, 500
 # '''
 # Example error handling for unprocessable entity
 # '''
