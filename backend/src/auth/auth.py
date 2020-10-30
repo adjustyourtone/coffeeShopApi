@@ -75,13 +75,16 @@ def get_token_auth_header():
 
 def check_permissions(permission, payload):
     if 'permissions' not in payload:
-        abort(400)
+        raise AuthError({
+            'code': 'invalid_claims',
+            'description': 'You do not have permission to access this data.'
+        }, 400)
 
     if permission not in payload['permissions']:
         raise AuthError({
             'code': 'unauthorized',
-            'description': 'Permission Not found',
-        }, 401)
+            'description': 'Required permission not found',
+        }, 403)
     return True
 
 

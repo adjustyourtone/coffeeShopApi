@@ -74,13 +74,6 @@ def get_drink_detail(payload):
         'drinks': [drink.long() for drink in drinks]
     }), 200
 
-# @app.route('/drinks-detail')
-# @requires_auth('get:drinks-detail')
-# def get_drinks_detail():
-#     return jsonify({
-#         "message": "success"
-#     })
-
 
 '''
 @TODO implement endpoint
@@ -93,25 +86,25 @@ def get_drink_detail(payload):
 '''
 
 
-# @app.route('/drinks', methods=['POST'])
-# @requires_auth('post:drinks')
-# def create_drink(payload):
-#     req = request.get_json()
+@app.route('/drinks', methods=['POST'])
+@requires_auth('post:drinks')
+def create_drink(payload):
+    req = request.get_json()
 
-#     try:
-#         req_recipe = req['recipe']
-#         if isinstance(req_recipe, dict):
-#             req_recipe = [req_recipe]
+    try:
+        req_recipe = req['recipe']
+        if isinstance(req_recipe, dict):
+            req_recipe = [req_recipe]
 
-#         drink = Drink()
-#         drink.title = req['title']
-#         drink.recipe = json.dumps(req_recipe)  # convert object to a string
-#         drink.insert()
+        drink = Drink()
+        drink.title = req['title']
+        drink.recipe = json.dumps(req_recipe)  # convert object to a string
+        drink.insert()
 
-#     except BaseException:
-#         abort(400)
+    except BaseException:
+        abort(400)
 
-#     return jsonify({'success': True, 'drinks': [drink.long()]})
+    return jsonify({'success': True, 'drinks': [drink.long()]})
 
 
 '''
