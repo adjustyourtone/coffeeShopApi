@@ -1,0 +1,46 @@
+For project reviewer:
+
+I left a fairly populated DB for you to use, so please do not re-Initialize the database unless you want to start from scratch again :) 
+
+Please find my Postman endpoint export in the backend folder. This project took longer than expected as I had to really wrap my head around Auth0 and understand how it worked for my own projects. While the documentation is detailed, it's not super easy to understand. However, now I'm confident I will be able to do it again for my Capstone.
+
+Something weird I noticed in the application:
+The application was 'remembering' login authorization and I do not understand why. No matter if I cleared cookies, deleted the token manually in the browser, or completely reset my browser, I could never get Chrome or Firefox to run me through the Auth0 authentication again. Is this Auth0 remembering my IP address? While this was outside the scope of the project, could you please provide some clarification on why this might be? 
+
+Extra tokens, just in case. Set to expire in 604,800 seconds (7 days).
+
+Manager JWT:
+eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InYtQ3JfdlZZREVzLUZ4LUxWTUdUdyJ9.eyJpc3MiOiJodHRwczovL2Rldi1iZHo2bWY0Mi51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWY5YWQ1YjljNWYxMWQwMDZlZTAxNzZlIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAwIiwiaWF0IjoxNjA0MTUyNTYyLCJleHAiOjE2MDQxNTk3NjIsImF6cCI6IkNJTzEwRGVVS2dqdU5qVW5hODV4dE50NERFV1kybm1PIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6ZHJpbmtzIiwiZ2V0OmRyaW5rcy1kZXRhaWwiLCJwYXRjaDpkcmlua3MiLCJwb3N0OmRyaW5rcyJdfQ.qUIvpvD_Ss_4OYNa59EzDcjxsKFSM-wH4mrj5S-N2lcZbJqDl5Ja4Zt14uyyJ0jXynhE-yfjHUuvGJQecftpmjyhGwPGSmG-WtuDvqZ_1bT12VolIdn4fPT5xAfENr9jgDNBmVosHap_ieklG5zja58SjWhwdH6wZv-DR8BqrDqBsckiWQyZ9nmuw9npjj38E2-VbxItmjVe2tB64vhQdA1otRcSHutoMWJDp3Hy1Sb0TQZxxqYg-Bra94ViRcIXaDrlpq6C5_hoeMlYNt0MOiXA-e8E3JzzgXJBSGzaFcqexdP8Wp4cfIChvo2srFBQQGWudDt3Rf035Bv1QXkx3A
+
+Barista JWT:
+eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InYtQ3JfdlZZREVzLUZ4LUxWTUdUdyJ9.eyJpc3MiOiJodHRwczovL2Rldi1iZHo2bWY0Mi51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWY5YzEyN2Q3OWNlY2EwMDc1ZjU2ZWY0IiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAwIiwiaWF0IjoxNjA0MTUyNzUxLCJleHAiOjE2MDQxNTk5NTEsImF6cCI6IkNJTzEwRGVVS2dqdU5qVW5hODV4dE50NERFV1kybm1PIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJnZXQ6ZHJpbmtzLWRldGFpbCJdfQ.Bwiv2vvaXk-IPxwvvp-QwVH9y4qf18i7YFgP92MROMmSwsKut82FpSI1zLcepYFDH4UaMfbbRaQUq5Mum8ZgWXhbkN_S1W6FAx8eA3NB7WaPZaIcIldjzn7gpRkI2KroA72I-tyjMr5VzUFD43pzTTzgYhPaxL-rPOTdfbmYF1CC0lo-3fJr0sPmAq5HFmW2SMi3jSBdqc9GYRktqAUb1P9qXYrFO-zzJeAotd88IGFk6ftHS0EsAZSDaVRwsVOM6e1mX-Zzvmz5ej536elI24XSQpEzlJokyqrU8V0ACSgoSHpDpckoDsMEETl7mBsDv0DefS-hQL61n5--m8Q0BA
+
+
+
+
+
+
+
+10/25 - Initialized project and begin setting up. Backend is running. Frontend not so much...
+
+10/28 - took 3 days to get Angular app working. The project dependencies did not support a running ionic environment. Angular/cli needed to be updated to 7.3 and @angular-devkit/build-angular to 0.13
+
+10/29
+- set up Auth0 account and set up Roles/Permissions. 
+-Defined get_token_auth_header(``)
+-was able to finally log in (.us missing in URL)
+
+10/30 
+- correctly reformated AuthError to throw the correct error message.
+- wrote post endpoint and created drink with postman
+- Verified Barista and Manager permissions (tokens below)
+- finished all endpoints.
+- Checked all permissions - verified working.
+- Tokens expire in 7 days (604,800 seconds)
+
+
+10/31
+- updated docstrings. 
+- generated new tokens for submission.
+- retested all endpoints to be working.
+- removed all todos.
